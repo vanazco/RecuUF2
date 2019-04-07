@@ -1,0 +1,44 @@
+{
+  "project_info": {
+    "project_number": "483881996851",
+    "firebase_url": "https://recuuf2-fceea.firebaseio.com",
+    "project_id": "recuuf2-fceea",
+    "storage_bucket": "recuuf2-fceea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:483881996851:android:9483d2c80f38701c",
+        "android_client_info": {
+          "package_name": "com.example.vast.recuuf2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "483881996851-m6vec82ec7sgqv5isgormuq8nnitp10o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.vast.recuuf2",
+            "certificate_hash": "7fa1f9577d3d0a189e4396ac0905b5d3930db950"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzvIb0SAF8XYzaJq9bDLT7c5BOAEALM9k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "483881996851-guvvfgdue3msd3c77n5aqiutn5gpg94c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
