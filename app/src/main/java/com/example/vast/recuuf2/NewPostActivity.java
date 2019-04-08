@@ -1,6 +1,5 @@
 package com.example.vast.recuuf2;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -10,12 +9,16 @@ import android.widget.EditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class NewPostActivity  extends AppCompatActivity {
-    public EditText new_title;
-    public EditText new_context;
-    public Button btn_public;
+import java.util.UUID;
 
-    DatabaseReference mRef;
+
+public class NewPostActivity  extends AppCompatActivity {
+    public Button btn_public;
+    public EditText new_title,new_context;
+    public String title_string, context_string;
+    public DatabaseReference mRef;
+    public String id;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,19 +27,20 @@ public class NewPostActivity  extends AppCompatActivity {
 
         mRef = FirebaseDatabase.getInstance().getReference();
 
+        btn_public = findViewById(R.id.btn_publicar);
         new_title = findViewById(R.id.new_titulo);
         new_context = findViewById(R.id.new_context);
-        btn_public = findViewById(R.id.btn_publicar);
 
         btn_public.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Crear object post
-              //  mRef.child("nayan").child("rezaul").child(post);
+                title_string = new_title.getText().toString();
+                context_string = new_context.getText().toString();
+                id = UUID.randomUUID().toString();
+                Post post = new Post(id,title_string,context_string);
+                mRef.child("Posts").child(id).setValue(post);
                 finish();
             }
         });
-
     }
-
 }
