@@ -21,6 +21,14 @@
             "package_name": "com.example.vast.recuuf2",
             "certificate_hash": "7fa1f9577d3d0a189e4396ac0905b5d3930db950"
           }
+        },
+        {
+          "client_id": "483881996851-jjo15es9f296gvmk033u9jfrukdf17jb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.vast.recuuf2",
+            "certificate_hash": "33d4607f946fc51bde73a34898b1e3eda6f827c0"
+          }
         }
       ],
       "api_key": [
