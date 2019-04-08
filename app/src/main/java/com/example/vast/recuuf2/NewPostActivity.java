@@ -7,15 +7,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class NewPostActivity  extends AppCompatActivity {
     public EditText new_title;
     public EditText new_context;
     public Button btn_public;
 
+    DatabaseReference mRef;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_post_item);
+
+        mRef = FirebaseDatabase.getInstance().getReference();
 
         new_title = findViewById(R.id.new_titulo);
         new_context = findViewById(R.id.new_context);
@@ -24,8 +31,9 @@ public class NewPostActivity  extends AppCompatActivity {
         btn_public.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(NewPostActivity.this, MainActivity.class);
-                startActivity(intent);
+                //Crear object post
+              //  mRef.child("nayan").child("rezaul").child(post);
+                finish();
             }
         });
 

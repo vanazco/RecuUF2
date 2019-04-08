@@ -37,10 +37,10 @@ public class PostRecyclerAdapter extends RecyclerView.Adapter<PostRecyclerAdapte
     class PostViewHolder extends RecyclerView.ViewHolder {
         private TextView poemTitle;
         private TextView postContext;
-        PostViewHolder(View itemPoem) {
-            super(itemPoem);
-            poemTitle = itemPoem.findViewById(R.id.post_title);
-            postContext = itemPoem.findViewById(R.id.post_context);
+        PostViewHolder(View itemPost) {
+            super(itemPost);
+            poemTitle = itemPost.findViewById(R.id.post_title);
+            postContext = itemPost.findViewById(R.id.post_context);
         }
     }
 }
