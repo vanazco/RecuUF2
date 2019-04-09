@@ -6,6 +6,7 @@ public class Post {
     public String title;
     public String context;
     public String id;
+    
 
     public Post(){}
 

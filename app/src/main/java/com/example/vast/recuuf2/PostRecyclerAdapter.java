@@ -1,5 +1,7 @@
 package com.example.vast.recuuf2;
 
+import android.content.Intent;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +32,7 @@ public class PostRecyclerAdapter extends RecyclerView.Adapter<PostRecyclerAdapte
     }
 
     @Override
-    public void onBindViewHolder(PostViewHolder holder, final int position) {
+    public void onBindViewHolder(final PostViewHolder holder, final int position) {
         final Post post = list.get(position);
         holder.postContext.setText(post.context);
         holder.postTitle.setText(post.title);
@@ -39,6 +41,17 @@ public class PostRecyclerAdapter extends RecyclerView.Adapter<PostRecyclerAdapte
             @Override
             public void onClick(View v) {
                 remove(post);
+            }
+        });
+        holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(holder.itemView.getContext(),DisplayPost.class);
+
+                intent.putExtra("id", list.get(holder.getAdapterPosition()).id);
+
+
+                holder.itemView.getContext().startActivity(intent);
             }
         });
     }
@@ -52,11 +65,13 @@ public class PostRecyclerAdapter extends RecyclerView.Adapter<PostRecyclerAdapte
         private TextView postTitle;
         private TextView postContext;
         ImageView trash;
+        ConstraintLayout constraintLayout;
         PostViewHolder(View itemPost) {
             super(itemPost);
             postTitle = itemPost.findViewById(R.id.post_title);
             postContext = itemPost.findViewById(R.id.post_context);
             trash = itemPost.findViewById(R.id.trash);
+            constraintLayout = itemPost.findViewById(R.id.id_post);
         }
     }
 
