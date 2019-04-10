@@ -55,9 +55,12 @@ public class NewPostActivity  extends AppCompatActivity {
 
 
 
+
+
         btn_public.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 title_string = new_title.getText().toString();
                 context_string = new_context.getText().toString();
                 id = UUID.randomUUID().toString();
@@ -75,7 +78,7 @@ public class NewPostActivity  extends AppCompatActivity {
         if(requestCode == RC_IMG_PICK && resultCode == RESULT_OK){
             mediaUri = mFileUri;
             mediaType = "image";
-
+            GlideApp.with(this).load(mediaUri).into(preview);
         }
     }
 }

@@ -37,6 +37,7 @@ public class PostRecyclerAdapter extends RecyclerView.Adapter<PostRecyclerAdapte
         holder.postContext.setText(post.context);
         holder.postTitle.setText(post.title);
 
+
         holder.trash.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,12 +67,14 @@ public class PostRecyclerAdapter extends RecyclerView.Adapter<PostRecyclerAdapte
         private TextView postContext;
         ImageView trash;
         ConstraintLayout constraintLayout;
+        ImageView img;
         PostViewHolder(View itemPost) {
             super(itemPost);
             postTitle = itemPost.findViewById(R.id.post_title);
             postContext = itemPost.findViewById(R.id.post_context);
             trash = itemPost.findViewById(R.id.trash);
             constraintLayout = itemPost.findViewById(R.id.id_post);
+            img = itemPost.findViewById(R.id.post_image);
         }
     }
 
