@@ -36,6 +36,7 @@ public class PostRecyclerAdapter extends RecyclerView.Adapter<PostRecyclerAdapte
         final Post post = list.get(position);
         holder.postContext.setText(post.context);
         holder.postTitle.setText(post.title);
+        GlideApp.with(holder.constraintLayout.getContext()).load(post.img).circleCrop().into(holder.img);
 
 
         holder.trash.setOnClickListener(new View.OnClickListener() {
