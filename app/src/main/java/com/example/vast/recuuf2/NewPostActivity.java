@@ -39,6 +39,8 @@ public class NewPostActivity  extends AppCompatActivity {
     String mediaType;
     String downloadUri;
     Post post;
+    boolean new_post = true;
+    boolean post_image = false;
 
 
     @Override
@@ -72,22 +74,28 @@ public class NewPostActivity  extends AppCompatActivity {
                 title_string = new_title.getText().toString();
                 context_string = new_context.getText().toString();
                 id = UUID.randomUUID().toString();
-                FirebaseStorage.getInstance().getReference(mediaType + "/" + id + mediaUri.getLastPathSegment()).putFile(mediaUri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                    @Override
-                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                        return task.getResult().getStorage().getDownloadUrl();
-                    }
-                }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Uri> task) {
-                        if(task.isSuccessful()){
-                            downloadUri = task.getResult().toString();
-
-                            post = new Post(id,title_string,context_string,downloadUri);
-                            mRef.child("Posts").child(id).setValue(post);
+                if(post_image){
+                    FirebaseStorage.getInstance().getReference(mediaType + "/" + id + mediaUri.getLastPathSegment()).putFile(mediaUri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                        @Override
+                        public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                            return task.getResult().getStorage().getDownloadUrl();
                         }
-                    }
-                });
+                    }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Uri> task) {
+                            if(task.isSuccessful()){
+                                new_post = false;
+                                downloadUri = task.getResult().toString();
+                                post = new Post(id,title_string,context_string,downloadUri);
+                                mRef.child("Posts").child(id).setValue(post);
+                            }
+                        }
+                    });
+                }
+                if(new_post){
+                    post = new Post(id,title_string,context_string,downloadUri);
+                    mRef.child("Posts").child(id).setValue(post);
+                }
                 finish();
             }
         });
@@ -100,6 +108,7 @@ public class NewPostActivity  extends AppCompatActivity {
             mediaUri = data.getData();
             mediaType = "image";
             GlideApp.with(this).load(mediaUri).into(preview);
+            post_image = true;
         }
     }
 }
